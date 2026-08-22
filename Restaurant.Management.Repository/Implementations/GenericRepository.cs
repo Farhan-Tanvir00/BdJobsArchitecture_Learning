@@ -1,9 +1,8 @@
-﻿using Restaurant.Management.AggregateRoot.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Restaurant.Management.AggregateRoot.Entities;
 using Restaurant.Management.Repository.Interfaces;
 using Restaurant.Management.Repository.Persistance;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace Restaurant.Management.Repository.Implementations
 {
@@ -16,32 +15,33 @@ namespace Restaurant.Management.Repository.Implementations
         }
         public void Add(T entity)
         {
-            throw new NotImplementedException();
+            _restaurantDbContext.Set<T>().Add(entity);
         }
 
-        public Task<bool> Exists(int id)
+        public async Task<bool> ExistsAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _restaurantDbContext.Set<T>().AnyAsync(e => e.Id == id);
         }
 
         public IQueryable<T> GetAll()
         {
-            throw new NotImplementedException();
+            return _restaurantDbContext.Set<T>().AsQueryable();
         }
 
-        public Task<T?> GetById(int id)
+        public async Task<T?> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _restaurantDbContext.Set<T>().FindAsync(id);
         }
 
         public void Remove(T entity)
         {
-            throw new NotImplementedException();
+            _restaurantDbContext.Set<T>().Remove(entity);
         }
 
         public void Update(T entity)
         {
-            throw new NotImplementedException();
+            _restaurantDbContext.Set<T>().Attach(entity);
+            _restaurantDbContext.Entry(entity).State = EntityState.Modified;
         }
     }
 }

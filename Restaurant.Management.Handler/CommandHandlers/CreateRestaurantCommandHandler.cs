@@ -1,6 +1,7 @@
 ﻿using Restaurant.Management.AggregateRoot.Aggrigates.Interfaces;
 using Restaurant.Management.DTO.Commands;
 using Restaurant.Management.Repository.Interfaces;
+using Restaurant.Management.Shared.Common;
 using Restaurant.Management.Shared.Interfaces.Commands;
 
 
@@ -15,20 +16,19 @@ namespace Restaurant.Management.Handler.CommandHandlers
             _restaurantAggrigator = restaurantAggrigator;
             _unitOfWork = unitOfWork;
         }
-        public async Task HandleAsync(CreateRestaurantCommand command)
+        public async Task<ApiResponse<object?>> HandleAsync(CreateRestaurantCommand command)
         {
             var restaurant = _restaurantAggrigator.CreateRestaurant(command);
 
             _unitOfWork.RestaurantRepository.Add(restaurant);
+            bool result = await _unitOfWork.SaveChangesAsync();
 
-            if(await _unitOfWork.SaveChangesAsync())
+            if (!result)
             {
-                // Handle success
+                return ApiResponse<object?>.FailedResponse("Failed to create restaurant", 500);
             }
-            else
-            {
-                // Handle failure
-            }
+
+            return ApiResponse<object?>.SuccessResponse("Restaurant created successfully", 201);
         }
     }
 }

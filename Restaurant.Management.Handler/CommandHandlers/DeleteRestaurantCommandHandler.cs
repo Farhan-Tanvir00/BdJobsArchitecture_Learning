@@ -1,4 +1,5 @@
 ﻿using Restaurant.Management.DTO.Commands;
+using Restaurant.Management.Shared.Common;
 using Restaurant.Management.Shared.Interfaces.Commands;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ namespace Restaurant.Management.Handler.CommandHandlers
 {
     internal class DeleteRestaurantCommandHandler : ICommandHandler<DeleteRestaurantCommand>
     {
-        public Task HandleAsync(DeleteRestaurantCommand command)
+        public Task<ApiResponse<object?>> HandleAsync(DeleteRestaurantCommand command)
         {
             throw new NotImplementedException();
         }

@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Restaurant.Management.DTO.Commands;
-using Restaurant.Management.DTO.Common;
+using Restaurant.Management.DTO.DTO;
+using Restaurant.Management.DTO.Queries;
+using Restaurant.Management.Shared.Common;
 using Restaurant.Management.Shared.Interfaces.Commands;
+using Restaurant.Management.Shared.Interfaces.GenericCommandQueryHandler;
 
 
 namespace Restautant.Management.Controllers
@@ -15,13 +18,13 @@ namespace Restautant.Management.Controllers
         {
             _serviceProvider = serviceProvider;
         }
-        //[HttpGet]
-        //public async Task<ActionResult<ApiResponse> GetAllRestaurants()
-        //{
-        //    // GetAllRestaurantQuery
-        //    var restaurants = await _restaurantManagementHandler.GetAllRestaurantsAsync();
-        //    return Ok(restaurants);
-        //}
+        [HttpGet]
+        public async Task<ActionResult<ApiResponse<List<RestaurantDTO>>>> GetAllRestaurants()
+        {
+            var query = new GetAllRestaurantQuery();
+            var restaurants = await _serviceProvider.GetRequiredService<IQueryHandler<GetAllRestaurantQuery, ApiResponse<List<RestaurantDTO>>>>().HandleAsync(query);
+            return Ok(restaurants);
+        }
 
         //[HttpGet]
         //[Route("{id}")]
@@ -33,11 +36,10 @@ namespace Restautant.Management.Controllers
         //}
 
         [HttpPost]
-        public async Task<ActionResult<ApiResponse>> CreateRestaurant([FromBody] CreateRestaurantCommand command)
+        public async Task<ActionResult<ApiResponse<object?>>> CreateRestaurant([FromBody] CreateRestaurantCommand command)
         {
-            await _serviceProvider.GetRequiredService<ICommandHandler<CreateRestaurantCommand>>().HandleAsync(command);
-            //return CreatedAtAction(nameof(GetRestaurantById), new { id }, null);
-            return Ok();
+            var result = await _serviceProvider.GetRequiredService<ICommandHandler<CreateRestaurantCommand>>().HandleAsync(command);
+            return Ok(result);
         }
 
         //[HttpDelete("{id}")]

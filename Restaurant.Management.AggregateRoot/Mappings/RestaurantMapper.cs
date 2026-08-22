@@ -1,5 +1,6 @@
 ﻿using Restaurant.Management.AggregateRoot.Entities;
 using Restaurant.Management.DTO.Commands;
+using Restaurant.Management.DTO.DTO;
 
 namespace Restaurant.Management.AggregateRoot.Mappings
 {
@@ -20,6 +21,32 @@ namespace Restaurant.Management.AggregateRoot.Mappings
                     Street = restaurant.RestaurantStreet,
                     PostalCode = restaurant.RestaurantPostalCode
                 }
+            };
+        }
+
+        public static RestaurantDTO? FromEntitity(RestaurantDetails? restaurantDetails)
+        {
+            if (restaurantDetails is null)
+            {
+                return null;
+            }
+
+            return new RestaurantDTO()
+            {
+                RestaurantName = restaurantDetails.Name,
+                RestaurantDescription = restaurantDetails.Description,
+                RestaurantCategory = restaurantDetails.Category,
+
+                RestaurantContactEmail = restaurantDetails.ContactEmail,
+                RestaurantContactNumber = restaurantDetails.ContactNumber,
+
+                RestaurantCity = restaurantDetails.Address?.City,
+                RestaurantStreet = restaurantDetails.Address?.Street,
+                RestaurantPostalCode = restaurantDetails.Address?.PostalCode,
+
+                RestaurantHasDelivery = restaurantDetails.HasDelivery,
+                RestaurantIsOpen = restaurantDetails.IsOpen,
+                RestaurantDishCount = restaurantDetails.DishCount
             };
         }
     }

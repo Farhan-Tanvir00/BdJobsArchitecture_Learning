@@ -2,6 +2,8 @@
 using Restaurant.Management.AggregateRoot.Entities;
 using Restaurant.Management.AggregateRoot.Mappings;
 using Restaurant.Management.DTO.Commands;
+using Restaurant.Management.DTO.DTO;
+using Restaurant.Management.DTO.Queries;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,6 +20,12 @@ namespace Restaurant.Management.AggregateRoot.Aggrigates.Implementations
             restaurant.IsOpen = false;
 
             return restaurant;
+        }
+
+        public List<RestaurantDTO?> CreateRestaurantDtos(List<RestaurantDetails> restaurantDetails)
+        {
+            var restaurantDtos = restaurantDetails.Select(r => RestaurantMapper.FromEntitity(r));
+            return restaurantDtos.ToList();
         }
     }
 }
