@@ -1,0 +1,6 @@
+@Restautant.Management_HostAddress = http://localhost:5042
+
+GET {{Restautant.Management_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

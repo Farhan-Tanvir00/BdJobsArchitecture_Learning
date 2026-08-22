@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.11" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.11" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Restaurant.Management.AggregateRoot\Restaurant.Management.AggregateRoot.csproj" />
+    <ProjectReference Include="..\Restaurant.Management.DTO\Restaurant.Management.DTO.csproj" />
+    <ProjectReference Include="..\Restaurant.Management.Repository\Restaurant.Management.Repository.csproj" />
+    <ProjectReference Include="..\Restaurant.Management.Shared\Restaurant.Management.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

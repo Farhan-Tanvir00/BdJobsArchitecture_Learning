@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="Restaurant.Management.AggregateRoot/Restaurant.Management.AggregateRoot.csproj" />
+  <Project Path="Restaurant.Management.DTO/Restaurant.Management.DTO.csproj" />
+  <Project Path="Restaurant.Management.Handler/Restaurant.Management.Handler.csproj" />
+  <Project Path="Restaurant.Management.Repository/Restaurant.Management.Repository.csproj" />
+  <Project Path="Restaurant.Management.Shared/Restaurant.Management.Shared.csproj" />
+  <Project Path="Restautant.Management.API/Restautant.Management.API.csproj" />
+</Solution>
