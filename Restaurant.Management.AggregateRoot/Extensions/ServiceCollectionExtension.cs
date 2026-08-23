@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Restaurant.Management.AggregateRoot.Aggrigates.Implementations;
-using Restaurant.Management.AggregateRoot.Aggrigates.Interfaces;
+using Restaurant.Management.AggregateRoot.Aggrigates;
 
 
 namespace Restaurant.Management.AggregateRoot.Extensions
@@ -9,8 +8,7 @@ namespace Restaurant.Management.AggregateRoot.Extensions
     {
         public static void AddRestaurantManagementAggrigateRoot(this IServiceCollection services)
         {
-            services.AddScoped<IRestaurentAggrigator, RestaurantAggrigate>();
-            //services.AddScoped(typeof(RestaurantAggrigate));
+            services.AddScoped<RestaurantAggrigate>();
         }
     }
 }

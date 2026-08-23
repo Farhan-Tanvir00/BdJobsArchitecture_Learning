@@ -1,19 +1,17 @@
-﻿using Restaurant.Management.AggregateRoot.Aggrigates.Interfaces;
-using Restaurant.Management.DTO.Commands;
+﻿using Restaurant.Management.DTO.Commands;
 using Restaurant.Management.Repository.Interfaces;
 using Restaurant.Management.Shared.Common;
 using Restaurant.Management.Shared.Interfaces.Commands;
-
+using Restaurant.Management.AggregateRoot.Extensions;
+using Restaurant.Management.AggregateRoot.Aggrigates;
 
 namespace Restaurant.Management.Handler.CommandHandlers
 {
     internal class ActiveDeliveryRestaurantCommandHandler : ICommandHandler<ActiveDeliveryRestaurantCommand>
     {
-        private readonly IRestaurentAggrigator _restaurantAggrigator;
         private readonly IUnitOfWork _unitOfWork;
-        public ActiveDeliveryRestaurantCommandHandler(IRestaurentAggrigator restaurantAggrigator, IUnitOfWork unitOfWork)
+        public ActiveDeliveryRestaurantCommandHandler(RestaurantAggrigate restaurantAggrigator, IUnitOfWork unitOfWork)
         {
-            _restaurantAggrigator = restaurantAggrigator;
             _unitOfWork = unitOfWork;
         }
 
@@ -25,7 +23,7 @@ namespace Restaurant.Management.Handler.CommandHandlers
                 return ApiResponse<object?>.FailedResponse("Could not find restaurant", 404);
             }
 
-            var activeDeliveryResult = _restaurantAggrigator.ActivateDelivery(rstaurant);
+            var activeDeliveryResult = RestaurantAggrigate.ActivateDelivery(rstaurant);
 
             _unitOfWork.RestaurantRepository.Update(activeDeliveryResult);
             var result = await _unitOfWork.SaveChangesAsync();

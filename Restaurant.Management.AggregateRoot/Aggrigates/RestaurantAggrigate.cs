@@ -1,5 +1,4 @@
-﻿using Restaurant.Management.AggregateRoot.Aggrigates.Interfaces;
-using Restaurant.Management.AggregateRoot.Entities;
+﻿using Restaurant.Management.AggregateRoot.Entities;
 using Restaurant.Management.AggregateRoot.Mappings;
 using Restaurant.Management.AggregateRoot.ValueObjects;
 using Restaurant.Management.DTO.Commands;
@@ -9,11 +8,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Restaurant.Management.AggregateRoot.Aggrigates.Implementations
+namespace Restaurant.Management.AggregateRoot.Aggrigates
 {
-    internal class RestaurantAggrigate : IRestaurentAggrigator
+    public class RestaurantAggrigate
     {
-        public RestaurantDetails CreateRestaurant(CreateRestaurantCommand command)
+        public static RestaurantDetails CreateRestaurant(CreateRestaurantCommand command)
         {
             var restaurant = command.ToEntity();
             restaurant.DishCount = 0;
@@ -23,19 +22,19 @@ namespace Restaurant.Management.AggregateRoot.Aggrigates.Implementations
             return restaurant;
         }
 
-        public List<RestaurantDTO?> CreateRestaurantDtos(List<RestaurantDetails> restaurantDetails)
+        public static List<RestaurantDTO?> CreateRestaurantDtos(List<RestaurantDetails> restaurantDetails)
         {
             var restaurantDtos = restaurantDetails.Select(r => RestaurantMapper.FromEntitity(r));
             return restaurantDtos.ToList();
         }
 
-        public RestaurantDTO CreateRestaurantDto(RestaurantDetails restaurantDetails)
+        public static RestaurantDTO CreateRestaurantDto(RestaurantDetails restaurantDetails)
         {
             var restaurantDto = RestaurantMapper.FromEntitity(restaurantDetails);
             return restaurantDto!;
         }
 
-        public RestaurantDetails UpdateRestaurant(UpdateRestaurantCommand command, RestaurantDetails existingRestaurant)
+        public static RestaurantDetails UpdateRestaurant(UpdateRestaurantCommand command, RestaurantDetails existingRestaurant)
         {
             existingRestaurant.Name = command.RestaurantName;
             existingRestaurant.Description = command.RestaurantDescription;
@@ -50,7 +49,7 @@ namespace Restaurant.Management.AggregateRoot.Aggrigates.Implementations
             return existingRestaurant;
         }
 
-        public RestaurantDetails ActivateDelivery(RestaurantDetails existingRestaurant)
+        public static RestaurantDetails ActivateDelivery(RestaurantDetails existingRestaurant)
         {
             existingRestaurant.IsOpen = true;
             existingRestaurant.HasDelivery = true;
