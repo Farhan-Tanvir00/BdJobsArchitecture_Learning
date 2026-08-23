@@ -9,16 +9,16 @@ namespace Restaurant.Management.Handler.CommandHandlers
 {
     internal class CreateRestaurantCommandHandler : ICommandHandler<CreateRestaurantCommand>
     {
-        private readonly IRestaurentAggrigator _restaurantAggrigator;
+        private readonly IRestaurentAggrigator _restaurantAggrigate;
         private readonly IUnitOfWork _unitOfWork;
-        public CreateRestaurantCommandHandler(IRestaurentAggrigator restaurantAggrigator, IUnitOfWork unitOfWork)
+        public CreateRestaurantCommandHandler(IRestaurentAggrigator restaurantAggrigate, IUnitOfWork unitOfWork)
         {
-            _restaurantAggrigator = restaurantAggrigator;
+            _restaurantAggrigate = restaurantAggrigate;
             _unitOfWork = unitOfWork;
         }
         public async Task<ApiResponse<object?>> HandleAsync(CreateRestaurantCommand command)
         {
-            var restaurant = _restaurantAggrigator.CreateRestaurant(command);
+            var restaurant = _restaurantAggrigate.CreateRestaurant(command);
 
             _unitOfWork.RestaurantRepository.Add(restaurant);
             bool result = await _unitOfWork.SaveChangesAsync();

@@ -10,6 +10,7 @@ namespace Restaurant.Management.AggregateRoot.Extensions
         public static void AddRestaurantManagementAggrigateRoot(this IServiceCollection services)
         {
             services.AddScoped<IRestaurentAggrigator, RestaurantAggrigate>();
+            //services.AddScoped(typeof(RestaurantAggrigate));
         }
     }
 }

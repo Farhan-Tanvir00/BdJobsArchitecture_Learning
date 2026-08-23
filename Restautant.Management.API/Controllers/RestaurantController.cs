@@ -22,18 +22,18 @@ namespace Restautant.Management.Controllers
         public async Task<ActionResult<ApiResponse<List<RestaurantDTO>>>> GetAllRestaurants()
         {
             var query = new GetAllRestaurantQuery();
-            var restaurants = await _serviceProvider.GetRequiredService<IQueryHandler<GetAllRestaurantQuery, ApiResponse<List<RestaurantDTO>>>>().HandleAsync(query);
-            return Ok(restaurants);
+            var result = await _serviceProvider.GetRequiredService<IQueryHandler<GetAllRestaurantQuery, ApiResponse<List<RestaurantDTO>>>>().HandleAsync(query);
+            return Ok(result);
         }
 
-        //[HttpGet]
-        //[Route("{id}")]
-        //public async Task<ActionResult<ApiResponse>> GetRestaurantById([FromBody] GetOneRestaurantQuery query)
-        //{
-        //    //GetOneRestaurantQuery
-        //    var restaurant = await _restaurantDetailsService.GetRestaurantByIdAsync(query.Id);
-        //    return Ok(restaurant);
-        //}
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<ActionResult<ApiResponse<RestaurantDTO>>> GetRestaurantById([FromRoute] int id)
+        {
+            var query = new GetOneRestaurantQuery { RestaurantId = id };
+            var result = await _serviceProvider.GetRequiredService<IQueryHandler<GetOneRestaurantQuery, ApiResponse<RestaurantDTO>>>().HandleAsync(query);
+            return Ok(result);
+        }
 
         [HttpPost]
         public async Task<ActionResult<ApiResponse<object?>>> CreateRestaurant([FromBody] CreateRestaurantCommand command)
@@ -42,19 +42,30 @@ namespace Restautant.Management.Controllers
             return Ok(result);
         }
 
-        //[HttpDelete("{id}")]
-        //public async Task<ActionResult<ApiResponse>> DeleteRestaurant([FromRoute] int id)
-        //{
-        //    await _restaurantDetailsService.DeleteRestaurantAsync(id);
-        //    return NoContent();
-        //}
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<ApiResponse<object?>>> DeleteRestaurant([FromRoute] int id)
+        {
+            var command = new DeleteRestaurantCommand { RestaurantId = id };
+            var result = await _serviceProvider.GetRequiredService<ICommandHandler<DeleteRestaurantCommand>>().HandleAsync(command);
+            return Ok(result);
+        }
 
-        //[HttpPatch("{id}")]
-        //public async Task<ActionResult<ApiResponse>> UpdateRestaurant([FromRoute] int id, [FromBody] RestaurantDTO restaurant)
-        //{
-        //    await _restaurantDetailsService.UpdateRestaurantAsync(id, restaurant);
-        //    return NoContent();
-        //}
+        [HttpPatch("{id}")]
+        public async Task<ActionResult<ApiResponse<object?>>> UpdateRestaurant([FromRoute] int id, [FromBody] UpdateRestaurantCommand command)
+        {
+            command.RestaurantId = id;
+            var result = await _serviceProvider.GetRequiredService<ICommandHandler<UpdateRestaurantCommand>>().HandleAsync(command);
+            return Ok(result);
+        }
+
+        [HttpPatch]
+        [Route("ActiveDelivery/{id}")]
+        public async Task<ActionResult<ApiResponse<object?>>> ActiveDelivery([FromRoute] int id)
+        {
+            var command = new ActiveDeliveryRestaurantCommand { RestaurantId = id };
+            var result = await _serviceProvider.GetRequiredService<ICommandHandler<ActiveDeliveryRestaurantCommand>>().HandleAsync(command);
+            return Ok(result);
+        }
 
         //[HttpPost("Search")]
         //public async Task<ActionResult<ApiResponse>> SearchRestaurants([FromQuery] string? name,

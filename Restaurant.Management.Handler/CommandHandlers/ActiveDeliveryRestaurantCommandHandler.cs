@@ -7,17 +7,17 @@ using Restaurant.Management.Shared.Interfaces.Commands;
 
 namespace Restaurant.Management.Handler.CommandHandlers
 {
-    internal class UpdateRestaurantCommandHandler : ICommandHandler<UpdateRestaurantCommand>
+    internal class ActiveDeliveryRestaurantCommandHandler : ICommandHandler<ActiveDeliveryRestaurantCommand>
     {
         private readonly IRestaurentAggrigator _restaurantAggrigator;
         private readonly IUnitOfWork _unitOfWork;
-
-        public UpdateRestaurantCommandHandler(IRestaurentAggrigator restaurantAggrigator, IUnitOfWork unitOfWork)
+        public ActiveDeliveryRestaurantCommandHandler(IRestaurentAggrigator restaurantAggrigator, IUnitOfWork unitOfWork)
         {
             _restaurantAggrigator = restaurantAggrigator;
             _unitOfWork = unitOfWork;
         }
-        public async Task<ApiResponse<object?>> HandleAsync(UpdateRestaurantCommand command)
+
+        public async Task<ApiResponse<object?>> HandleAsync(ActiveDeliveryRestaurantCommand command)
         {
             var rstaurant = await _unitOfWork.RestaurantRepository.GetByIdAsync(command.RestaurantId);
             if (rstaurant == null)
@@ -25,17 +25,17 @@ namespace Restaurant.Management.Handler.CommandHandlers
                 return ApiResponse<object?>.FailedResponse("Could not find restaurant", 404);
             }
 
-            var updatedRestaurant = _restaurantAggrigator.UpdateRestaurant(command, rstaurant);
+            var activeDeliveryResult = _restaurantAggrigator.ActivateDelivery(rstaurant);
 
-            _unitOfWork.RestaurantRepository.Update(updatedRestaurant);
+            _unitOfWork.RestaurantRepository.Update(activeDeliveryResult);
             var result = await _unitOfWork.SaveChangesAsync();
 
-            if(!result)
+            if (!result)
             {
-                return ApiResponse<object?>.FailedResponse("Failed to update restaurant", 500);
+                return ApiResponse<object?>.FailedResponse("Failed to Activate Delivery", 500);
             }
 
-            return ApiResponse<object?>.SuccessResponse("Updated restaurant successfully");
+            return ApiResponse<object?>.SuccessResponse("Delivery activated successfully");
         }
     }
 }

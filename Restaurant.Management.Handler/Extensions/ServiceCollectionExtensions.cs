@@ -21,6 +21,7 @@ namespace Restaurant.Management.Handler.Extensions
             services.AddScoped<ICommandHandler<CreateRestaurantCommand>, CreateRestaurantCommandHandler>();
             services.AddScoped<ICommandHandler<DeleteRestaurantCommand>, DeleteRestaurantCommandHandler>();
             services.AddScoped<ICommandHandler<UpdateRestaurantCommand>, UpdateRestaurantCommandHandler>();
+            services.AddScoped<ICommandHandler<ActiveDeliveryRestaurantCommand>, ActiveDeliveryRestaurantCommandHandler>();
 
             services.AddScoped<IQueryHandler<GetAllRestaurantQuery, ApiResponse<List<RestaurantDTO>>>, GetAllRestaurantQueryHandler>();
             services.AddScoped<IQueryHandler<GetOneRestaurantQuery, ApiResponse<RestaurantDTO>>, GetOneRestaurantQueryHandler>();

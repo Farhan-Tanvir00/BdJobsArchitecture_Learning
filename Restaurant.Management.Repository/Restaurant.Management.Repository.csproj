@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Restaurant.Management.AggregateRoot\Restaurant.Management.AggregateRoot.csproj" />
+    <ProjectReference Include="..\Restaurant.Management.Shared\Restaurant.Management.Shared.csproj" />
   </ItemGroup>
 
 </Project>

@@ -12,5 +12,8 @@ namespace Restaurant.Management.AggregateRoot.Aggrigates.Interfaces
     {
         RestaurantDetails CreateRestaurant(CreateRestaurantCommand command);
         List<RestaurantDTO?> CreateRestaurantDtos(List<RestaurantDetails> restaurantDetails);
+        RestaurantDTO CreateRestaurantDto(RestaurantDetails restaurantDetails);
+        RestaurantDetails UpdateRestaurant(UpdateRestaurantCommand command, RestaurantDetails existingRestaurant);
+        RestaurantDetails ActivateDelivery(RestaurantDetails existingRestaurant);
     }
 }

@@ -2,6 +2,8 @@
 using Restaurant.Management.AggregateRoot.Entities;
 using Restaurant.Management.Repository.Interfaces;
 using Restaurant.Management.Repository.Persistance;
+using Restaurant.Management.Shared.Interfaces.Filter;
+using System.Linq.Expressions;
 
 
 namespace Restaurant.Management.Repository.Implementations
@@ -42,6 +44,11 @@ namespace Restaurant.Management.Repository.Implementations
         {
             _restaurantDbContext.Set<T>().Attach(entity);
             _restaurantDbContext.Entry(entity).State = EntityState.Modified;
+        }
+
+        public IQueryable<T> Search(Expression<Func<T, bool>> expression)
+        {
+            return _restaurantDbContext.Set<T>().Where(expression);
         }
     }
 }

@@ -24,6 +24,7 @@ namespace Restaurant.Management.Handler.QueryHandlers
 
         public async Task<ApiResponse<List<RestaurantDTO>>> HandleAsync(GetAllRestaurantQuery query)
         {
+
             var restaurants = await _unitOfWork.RestaurantRepository.GetAll().ToListAsync();
 
             var restaurantDTOs = _restaurantAggrigator.CreateRestaurantDtos(restaurants);

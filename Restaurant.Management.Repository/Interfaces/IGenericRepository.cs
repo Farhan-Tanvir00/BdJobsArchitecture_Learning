@@ -1,4 +1,6 @@
 ﻿using Restaurant.Management.AggregateRoot.Entities;
+using Restaurant.Management.Shared.Interfaces.Filter;
+using System.Linq.Expressions;
 
 namespace Restaurant.Management.Repository.Interfaces
 {
@@ -10,6 +12,6 @@ namespace Restaurant.Management.Repository.Interfaces
         void Remove(T entity);
         void Update(T entity);
         Task<bool> ExistsAsync(int id);
-        //IQueryable<T> Search(IFilter<T> filter);
+        IQueryable<T> Search(Expression<Func<T, bool>> expression);
     }
 }
