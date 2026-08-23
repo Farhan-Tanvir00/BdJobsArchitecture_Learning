@@ -1,5 +1,6 @@
 using Microsoft.OpenApi;
 using Restaurant.Management.Handler.Extensions;
+using Restautant.Management.API.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,9 +27,11 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 builder.Services.AddRestaurantManagementHandler(builder.Configuration);
+builder.Services.AddTransient<ErrorHandlingMiddleware>();
 
 var app = builder.Build();
 
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {
