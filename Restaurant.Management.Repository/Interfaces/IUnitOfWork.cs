@@ -1,12 +1,12 @@
-﻿using Restaurant.Management.AggregateRoot.Entities;
+﻿using Restaurant.Management.AggregateRoot;
 
 
 namespace Restaurant.Management.Repository.Interfaces
 {
     public interface IUnitOfWork: IDisposable
     {
-        IGenericRepository<RestaurantDetails> RestaurantRepository { get; }
-        IGenericRepository<Dish> DishRepository { get; }
+        IGenericRepository<RestaurantAggregateRoot> RestaurantRepository { get; }
+        IGenericRepository<DishAggregateRoot> DishRepository { get; }
         Task<bool> SaveChangesAsync();
     }
 }

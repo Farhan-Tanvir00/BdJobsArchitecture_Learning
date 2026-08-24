@@ -1,4 +1,4 @@
-﻿using Restaurant.Management.AggregateRoot.Aggrigates;
+﻿using Restaurant.Management.AggregateRoot;
 using Restaurant.Management.DTO.Commands;
 using Restaurant.Management.Repository.Interfaces;
 using Restaurant.Management.Shared.Common;
@@ -10,13 +10,16 @@ namespace Restaurant.Management.Handler.CommandHandlers
     internal class CreateRestaurantCommandHandler : ICommandHandler<CreateRestaurantCommand>
     {
         private readonly IUnitOfWork _unitOfWork;
-        public CreateRestaurantCommandHandler(IUnitOfWork unitOfWork)
+        private readonly RestaurantAggregateRoot _restaurantAggrigate;
+
+        public CreateRestaurantCommandHandler(RestaurantAggregateRoot restaurantAggrigate, IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
+            _restaurantAggrigate = restaurantAggrigate;
         }
         public async Task<ApiResponse<object?>> HandleAsync(CreateRestaurantCommand command)
         {
-            var restaurant = RestaurantAggrigate.CreateRestaurant(command);
+            var restaurant = _restaurantAggrigate.CreateRestaurant(command);
 
             _unitOfWork.RestaurantRepository.Add(restaurant);
             bool result = await _unitOfWork.SaveChangesAsync();

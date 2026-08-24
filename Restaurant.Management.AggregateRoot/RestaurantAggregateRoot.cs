@@ -1,18 +1,27 @@
-﻿using Restaurant.Management.AggregateRoot.Entities;
-using Restaurant.Management.AggregateRoot.Mappings;
-using Restaurant.Management.AggregateRoot.ValueObjects;
+﻿using Restaurant.Management.AggregateRoot.Mappings;
 using Restaurant.Management.DTO.Commands;
 using Restaurant.Management.DTO.DTO;
-using Restaurant.Management.DTO.Queries;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Restaurant.Management.DTO.Entities;
+using Restaurant.Management.DTO.ValueObjects;
 
-namespace Restaurant.Management.AggregateRoot.Aggrigates
+namespace Restaurant.Management.AggregateRoot
 {
-    public class RestaurantAggrigate
+    public class RestaurantAggregateRoot : BaseEntity
     {
-        public static RestaurantDetails CreateRestaurant(CreateRestaurantCommand command)
+        public required string Name { get; set; }
+        public required string Description { get; set; }
+        public required string Category { get; set; }
+        public int DishCount { get; set; }
+        public bool HasDelivery { get; set; }
+        public bool IsOpen { get; set; }
+
+        public string? ContactEmail { get; set; }
+        public string? ContactNumber { get; set; }
+
+        public Address? Address { get; set; }
+        public List<DishAggregateRoot> Dishes { get; set; } = new List<DishAggregateRoot>();
+
+        public RestaurantAggregateRoot CreateRestaurant(CreateRestaurantCommand command)
         {
             var restaurant = command.ToEntity();
             restaurant.DishCount = 0;
@@ -22,19 +31,19 @@ namespace Restaurant.Management.AggregateRoot.Aggrigates
             return restaurant;
         }
 
-        public static List<RestaurantDTO?> CreateRestaurantDtos(List<RestaurantDetails> restaurantDetails)
+        public List<RestaurantDTO?> CreateRestaurantDtos(List<RestaurantAggregateRoot> restaurantDetails)
         {
             var restaurantDtos = restaurantDetails.Select(r => RestaurantMapper.FromEntitity(r));
             return restaurantDtos.ToList();
         }
 
-        public static RestaurantDTO CreateRestaurantDto(RestaurantDetails restaurantDetails)
+        public RestaurantDTO CreateRestaurantDto(RestaurantAggregateRoot restaurantDetails)
         {
             var restaurantDto = RestaurantMapper.FromEntitity(restaurantDetails);
             return restaurantDto!;
         }
 
-        public static RestaurantDetails UpdateRestaurant(UpdateRestaurantCommand command, RestaurantDetails existingRestaurant)
+        public RestaurantAggregateRoot UpdateRestaurant(UpdateRestaurantCommand command, RestaurantAggregateRoot existingRestaurant)
         {
             existingRestaurant.Name = command.RestaurantName;
             existingRestaurant.Description = command.RestaurantDescription;
@@ -49,13 +58,11 @@ namespace Restaurant.Management.AggregateRoot.Aggrigates
             return existingRestaurant;
         }
 
-        public static RestaurantDetails ActivateDelivery(RestaurantDetails existingRestaurant)
+        public RestaurantAggregateRoot ActivateDelivery(RestaurantAggregateRoot existingRestaurant)
         {
             existingRestaurant.IsOpen = true;
             existingRestaurant.HasDelivery = true;
             return existingRestaurant;
         }
-
-
     }
 }

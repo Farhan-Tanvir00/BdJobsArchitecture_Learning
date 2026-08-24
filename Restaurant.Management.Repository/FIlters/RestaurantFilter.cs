@@ -1,13 +1,13 @@
-﻿using Restaurant.Management.AggregateRoot.Entities;
+﻿using Restaurant.Management.AggregateRoot;
 using Restaurant.Management.DTO.Queries;
 using Restaurant.Management.Shared.Interfaces.Filter;
 using System.Linq.Expressions;
 
 namespace Restaurant.Management.Repository.FIlters
 {
-    internal class RestaurantFilter : IFilter<RestaurantDetails, SearchRestaurantQuery>
+    internal class RestaurantFilter : IFilter<RestaurantAggregateRoot, SearchRestaurantQuery>
     {
-        public Expression<Func<RestaurantDetails, bool>> Build(SearchRestaurantQuery query)
+        public Expression<Func<RestaurantAggregateRoot, bool>> Build(SearchRestaurantQuery query)
         {
             return restaurant =>
             (string.IsNullOrWhiteSpace(query.RestaurantName) || restaurant.Name.Contains(query.RestaurantName)) &&

@@ -1,25 +1,23 @@
-﻿using Restaurant.Management.AggregateRoot.Entities;
+﻿using Restaurant.Management.AggregateRoot;
 using Restaurant.Management.Repository.Interfaces;
 using Restaurant.Management.Repository.Persistance;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace Restaurant.Management.Repository.Implementations
 {
     internal class UnitOfWork : IUnitOfWork
     {
         private readonly RestaurantDbContext _restaurantDbContext;
-        public IGenericRepository<RestaurantDetails> RestaurantRepository { get; }
+        public IGenericRepository<RestaurantAggregateRoot> RestaurantRepository { get; }
 
-        public IGenericRepository<Dish> DishRepository { get; }
+        public IGenericRepository<DishAggregateRoot> DishRepository { get; }
 
         public UnitOfWork(RestaurantDbContext restaurantDbContext)
         {
             _restaurantDbContext = restaurantDbContext;
 
-            RestaurantRepository = new GenericRepository<RestaurantDetails>(restaurantDbContext);
-            DishRepository = new GenericRepository<Dish>(restaurantDbContext);
+            RestaurantRepository = new GenericRepository<RestaurantAggregateRoot>(restaurantDbContext);
+            DishRepository = new GenericRepository<DishAggregateRoot>(restaurantDbContext);
         }
 
         public async Task<bool> SaveChangesAsync()

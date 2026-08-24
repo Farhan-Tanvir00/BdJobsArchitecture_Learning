@@ -1,5 +1,4 @@
-﻿using Restaurant.Management.AggregateRoot.Entities;
-using Restaurant.Management.Shared.Interfaces.Filter;
+﻿using Restaurant.Management.DTO.Entities;
 using System.Linq.Expressions;
 
 namespace Restaurant.Management.Repository.Interfaces

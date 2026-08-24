@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Restaurant.Management.AggregateRoot.ValueObjects
+namespace Restaurant.Management.DTO.ValueObjects
 {
     public class Address
     {

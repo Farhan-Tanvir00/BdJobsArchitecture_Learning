@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Restaurant.Management.AggregateRoot.Entities;
+using Restaurant.Management.AggregateRoot;
 
 
 namespace Restaurant.Management.Repository.Persistance
@@ -11,14 +11,14 @@ namespace Restaurant.Management.Repository.Persistance
 
         }
 
-        public DbSet<RestaurantDetails> Restaurants { get; set; }
-        public DbSet<Dish> Dishes { get; set; }
+        public DbSet<RestaurantAggregateRoot> Restaurants { get; set; }
+        public DbSet<DishAggregateRoot> Dishes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<RestaurantDetails>(rd =>
+            modelBuilder.Entity<RestaurantAggregateRoot>(rd =>
             {
                 rd.OwnsOne(rd => rd.Address);
                 rd.HasMany(rd => rd.Dishes).WithOne(d => d.RestaurantDetails).HasForeignKey(d => d.RestaurantDetailsId);

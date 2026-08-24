@@ -1,21 +1,21 @@
-﻿using Restaurant.Management.AggregateRoot.Entities;
-using Restaurant.Management.DTO.Commands;
+﻿using Restaurant.Management.DTO.Commands;
 using Restaurant.Management.DTO.DTO;
+using Restaurant.Management.DTO.ValueObjects;
 
 namespace Restaurant.Management.AggregateRoot.Mappings
 {
     public static class RestaurantMapper
     {
-        public static RestaurantDetails ToEntity(this CreateRestaurantCommand  restaurant)
+        public static RestaurantAggregateRoot ToEntity(this CreateRestaurantCommand  restaurant)
         {
-            return new RestaurantDetails
+            return new RestaurantAggregateRoot
             {
                 Name = restaurant.RestaurantName,
                 Description = restaurant.RestaurantDescription,
                 Category = restaurant.RestaurantCategory,
                 ContactEmail = restaurant.RestaurantContactEmail,
                 ContactNumber = restaurant.RestaurantContactNumber,
-                Address = new ValueObjects.Address
+                Address = new Address
                 {
                     City = restaurant.RestaurantCity,
                     Street = restaurant.RestaurantStreet,
@@ -24,7 +24,7 @@ namespace Restaurant.Management.AggregateRoot.Mappings
             };
         }
 
-        public static RestaurantDTO? FromEntitity(RestaurantDetails? restaurantDetails)
+        public static RestaurantDTO? FromEntitity(RestaurantAggregateRoot? restaurantDetails)
         {
             if (restaurantDetails is null)
             {

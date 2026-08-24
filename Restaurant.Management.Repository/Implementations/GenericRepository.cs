@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Restaurant.Management.AggregateRoot.Entities;
+using Restaurant.Management.DTO.Entities;
 using Restaurant.Management.Repository.Interfaces;
 using Restaurant.Management.Repository.Persistance;
-using Restaurant.Management.Shared.Interfaces.Filter;
 using System.Linq.Expressions;
 
 
