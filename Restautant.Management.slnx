@@ -1,8 +1,19 @@
 <Solution>
-  <Project Path="Restaurant.Management.AggregateRoot/Restaurant.Management.AggregateRoot.csproj" />
-  <Project Path="Restaurant.Management.DTO/Restaurant.Management.DTO.csproj" />
-  <Project Path="Restaurant.Management.Handler/Restaurant.Management.Handler.csproj" />
-  <Project Path="Restaurant.Management.Repository/Restaurant.Management.Repository.csproj" />
-  <Project Path="Restaurant.Management.Shared/Restaurant.Management.Shared.csproj" />
-  <Project Path="Restautant.Management.API/Restautant.Management.API.csproj" />
+  <Folder Name="/src/">
+    <Project Path="src/Restaurant.Management.Shared/Restaurant.Management.Shared.csproj" />
+  </Folder>
+  <Folder Name="/src/Restaurant.Authentication/">
+    <Project Path="src/Restaurant.Authentication/Restaurant.Authentication.AggregateRoot/Restaurant.Authentication.AggregateRoot.csproj" Id="f5f27eb6-49a4-402d-a152-16207d34ee9e" />
+    <Project Path="src/Restaurant.Authentication/Restaurant.Authentication.API/Restaurant.Authentication.API.csproj" Id="0f08d83a-e0b7-4aa6-b96c-8820f21aee14" />
+    <Project Path="src/Restaurant.Authentication/Restaurant.Authentication.DTO/Restaurant.Authentication.DTO.csproj" Id="e9963159-bca7-435f-af67-7854de891331" />
+    <Project Path="src/Restaurant.Authentication/Restaurant.Authentication.Handler/Restaurant.Authentication.Handler.csproj" Id="29324afb-710f-4d78-942d-cd684e3da615" />
+    <Project Path="src/Restaurant.Authentication/Restaurant.Authentication.Repository/Restaurant.Authentication.Repository.csproj" Id="be1a8d4f-4422-4168-8b7a-a4f6bf451c96" />
+  </Folder>
+  <Folder Name="/src/Restaurant.Management/">
+    <Project Path="src/Restaurant.Management/Restaurant.Management.AggregateRoot/Restaurant.Management.AggregateRoot.csproj" />
+    <Project Path="src/Restaurant.Management/Restaurant.Management.DTO/Restaurant.Management.DTO.csproj" />
+    <Project Path="src/Restaurant.Management/Restaurant.Management.Handler/Restaurant.Management.Handler.csproj" />
+    <Project Path="src/Restaurant.Management/Restaurant.Management.Repository/Restaurant.Management.Repository.csproj" />
+    <Project Path="src/Restaurant.Management/Restautant.Management.API/Restaurant.Management.API.csproj" />
+  </Folder>
 </Solution>
