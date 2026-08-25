@@ -1,8 +1,10 @@
-﻿using Restaurant.Management.AggregateRoot;
+﻿using FluentValidation;
+using Restaurant.Management.AggregateRoot;
 using Restaurant.Management.DTO.Commands;
 using Restaurant.Management.Repository.Interfaces;
 using Restaurant.Management.Shared.Common;
 using Restaurant.Management.Shared.Interfaces.GenericCommandQueryHandler;
+using System.ComponentModel.DataAnnotations;
 
 
 namespace Restaurant.Management.Handler.CommandHandlers

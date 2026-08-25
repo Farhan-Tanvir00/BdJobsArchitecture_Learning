@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Restaurant.Authentication.DTO\Restaurant.Authentication.DTO.csproj" />
+  </ItemGroup>
+
 </Project>

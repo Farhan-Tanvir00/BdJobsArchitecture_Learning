@@ -6,7 +6,7 @@ namespace Restaurant.Management.AggregateRoot.Mappings
 {
     public static class RestaurantMapper
     {
-        public static RestaurantAggregateRoot ToEntity(this CreateRestaurantCommand  restaurant)
+        public static RestaurantAggregateRoot ToEntity(this CreateRestaurantCommand restaurant)
         {
             return new RestaurantAggregateRoot
             {

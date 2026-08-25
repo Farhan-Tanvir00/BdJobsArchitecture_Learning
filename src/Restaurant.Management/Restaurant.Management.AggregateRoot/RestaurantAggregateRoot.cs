@@ -1,4 +1,5 @@
-﻿using Restaurant.Management.AggregateRoot.Mappings;
+﻿using FluentValidation;
+using Restaurant.Management.AggregateRoot.Mappings;
 using Restaurant.Management.DTO.Commands;
 using Restaurant.Management.DTO.DTO;
 using Restaurant.Management.DTO.Entities;
@@ -7,7 +8,7 @@ using Restaurant.Management.DTO.ValueObjects;
 namespace Restaurant.Management.AggregateRoot
 {
     public class RestaurantAggregateRoot : BaseEntity
-    {
+    {      
         public required string Name { get; set; }
         public required string Description { get; set; }
         public required string Category { get; set; }
@@ -23,6 +24,12 @@ namespace Restaurant.Management.AggregateRoot
 
         public RestaurantAggregateRoot CreateRestaurant(CreateRestaurantCommand command)
         {
+            //var validationResult = validator.Validate(command);
+            //if (!validationResult.IsValid)
+            //{
+            //    // Handle validation errors
+            //}
+
             var restaurant = command.ToEntity();
             restaurant.DishCount = 0;
             restaurant.HasDelivery = false;
@@ -64,5 +71,18 @@ namespace Restaurant.Management.AggregateRoot
             existingRestaurant.HasDelivery = true;
             return existingRestaurant;
         }
+
+        //private Dictionary<string, string[]> ValidateCommand(IValidator<CreateRestaurantCommand> validator, CreateRestaurantCommand command)
+        //{
+        //    var validationResult = validator.Validate(command);
+        //    if (!validationResult.IsValid)
+        //    {
+        //        return validationResult.Errors.GroupBy(e => e.PropertyName)
+        //            .ToDictionary(g => g.Key, g => g.Select(e => e.ErrorMessage).ToArray());
+        //    }
+
+        //    return new Dictionary<string, string[]>();
+        //}
+
     }
 }
