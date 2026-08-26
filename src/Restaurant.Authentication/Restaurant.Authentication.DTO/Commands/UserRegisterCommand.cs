@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Restaurant.Management.Shared.Interfaces.Command;
+
 
 namespace Restaurant.Authentication.DTO.Commands
 {
-    internal class UserRegisterCommand
+    public class UserRegisterCommand : ICommand
     {
+        public string? AppUserName { get; set; }
+        public string? AppUserEmail { get; set; }
+        public string? AppUserPassword { get; set; }
     }
 }

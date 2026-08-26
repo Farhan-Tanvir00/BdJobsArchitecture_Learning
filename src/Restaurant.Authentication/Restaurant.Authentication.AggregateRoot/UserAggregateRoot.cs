@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Restaurant.Authentication.DTO.Entity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
 
 namespace Restaurant.Authentication.AggregateRoot
 {
-    public class UserAggregateRoot
+    public class UserAggregateRoot : BaseEntity
     {
-        public int Id { get; set; }
         public string? UserName { get; set; }
         public string? Email { get; set; }
         public string? PasswordHash { get; set; }

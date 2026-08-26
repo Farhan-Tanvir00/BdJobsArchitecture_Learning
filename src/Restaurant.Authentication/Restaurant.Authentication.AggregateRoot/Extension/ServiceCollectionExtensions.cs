@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 namespace Restaurant.Authentication.AggregateRoot.Extension
 {
-    internal class ServiceCollectionExtensions
+    public static class ServiceCollectionExtensions
     {
+        public static void AddRestaurantAuthenticationAggregateRoot(this IServiceCollection services)
+        {
+            // Register your aggregate root services here
+        }
     }
 }

@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Restaurant.Management.Shared.Interfaces.Command;
 
 namespace Restaurant.Authentication.DTO.Commands
 {
-    internal class RoleAsignCommand
+    public class RoleAsignCommand : ICommand
     {
+        public string? AppUserName { get; set; }
+        public string? UserRoleName { get; set; }
     }
 }

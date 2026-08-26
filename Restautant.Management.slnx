@@ -1,6 +1,6 @@
 <Solution>
   <Folder Name="/src/">
-    <Project Path="src/Restaurant.Management.Shared/Restaurant.Management.Shared.csproj" />
+    <Project Path="src/Restaurant.Management.Shared/Restaurant.Shared.csproj" />
   </Folder>
   <Folder Name="/src/Restaurant.Authentication/">
     <Project Path="src/Restaurant.Authentication/Restaurant.Authentication.AggregateRoot/Restaurant.Authentication.AggregateRoot.csproj" Id="f5f27eb6-49a4-402d-a152-16207d34ee9e" />
