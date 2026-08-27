@@ -1,8 +1,6 @@
-﻿using Restaurant.Authentication.DTO.Entity;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Text;
+﻿using Restaurant.Authentication.DTO.Commands;
+using Restaurant.Authentication.DTO.Entity;
+
 
 namespace Restaurant.Authentication.AggregateRoot
 {
@@ -13,6 +11,24 @@ namespace Restaurant.Authentication.AggregateRoot
         public string? PasswordHash { get; set; }
 
         public List<RoleAggregateRoot> Roles { get; set; } = new List<RoleAggregateRoot>();
+
+
+        public UserAggregateRoot CreateNewUser(UserRegisterCommand command)
+        {
+            return new UserAggregateRoot
+            {
+                UserName = command.AppUserName,
+                Email = command.AppUserEmail,
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(command.AppUserPassword)
+            };
+        }
+
+        public UserAggregateRoot AddInitialRole(UserAggregateRoot user, RoleAggregateRoot role)
+        {
+            user.Roles.Add(role);
+            return user;
+        }
+
 
     }
 }

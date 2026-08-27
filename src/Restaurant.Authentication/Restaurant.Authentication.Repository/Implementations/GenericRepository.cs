@@ -1,10 +1,17 @@
 ﻿using Restaurant.Authentication.DTO.Entity;
 using Restaurant.Authentication.Repository.Interfaces;
+using Restaurant.Authentication.Repository.Persistance;
 
 namespace Restaurant.Authentication.Repository.Implementations
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     {
+        private readonly RestaurantAuthenticationDbContext _context;
+
+        public GenericRepository(RestaurantAuthenticationDbContext context)
+        {
+            _context = context;
+        }
         public void Add(T entity)
         {
             throw new NotImplementedException();
@@ -33,6 +40,11 @@ namespace Restaurant.Authentication.Repository.Implementations
         public void Update(T entity)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<bool> SaveChangesAsync()
+        {
+            return await _context.SaveChangesAsync() > 0;
         }
     }
 }

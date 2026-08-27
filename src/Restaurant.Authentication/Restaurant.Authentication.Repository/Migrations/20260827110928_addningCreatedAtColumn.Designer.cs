@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Restaurant.Authentication.Repository.Persistance;
 
@@ -10,9 +11,11 @@ using Restaurant.Authentication.Repository.Persistance;
 namespace Restaurant.Authentication.Repository.Migrations
 {
     [DbContext(typeof(RestaurantAuthenticationDbContext))]
-    partial class RestaurantAuthenticationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260827110928_addningCreatedAtColumn")]
+    partial class addningCreatedAtColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

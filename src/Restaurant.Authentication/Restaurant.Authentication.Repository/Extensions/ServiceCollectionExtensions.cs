@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Restaurant.Authentication.Repository.Implementations;
 using Restaurant.Authentication.Repository.Persistance;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,10 @@ namespace Restaurant.Authentication.Repository.Extensions
                 options.UseSqlServer(configuration.GetConnectionString("RestaurantDB_Test"))
                 .EnableSensitiveDataLogging();
             });
+
+            services.AddScoped<UserRepository>();
+            services.AddScoped<RoleRepository>();
+            services.AddScoped<AdminUserAndInitialRolesSeed>();
         }   
     }
 }
