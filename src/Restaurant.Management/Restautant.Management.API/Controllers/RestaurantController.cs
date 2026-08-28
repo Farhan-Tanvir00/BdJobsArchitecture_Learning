@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Restaurant.Management.DTO.Commands;
+using Restaurant.Management.DTO.Constants;
 using Restaurant.Management.DTO.DTO;
 using Restaurant.Management.DTO.Queries;
 using Restaurant.Management.Shared.Common;
@@ -18,6 +20,7 @@ namespace Restautant.Management.API.Controllers
             _serviceProvider = serviceProvider;
         }
         [HttpGet]
+        [Authorize(Roles = Roles.Admin)]
         public async Task<ActionResult<ApiResponse<List<RestaurantDTO>>>> GetAllRestaurants()
         {
             var query = new GetAllRestaurantQuery();

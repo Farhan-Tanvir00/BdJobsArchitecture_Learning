@@ -29,6 +29,15 @@ namespace Restaurant.Authentication.AggregateRoot
             return user;
         }
 
+        public bool checkUserCredentials(UserAggregateRoot user, UserLoginCommand command)
+        {
+            return VerifyHashedPassword(user.PasswordHash!, command.Password!);
+        }
+
+        private bool VerifyHashedPassword(string userPassword, string enteredPassword)
+        {
+            return BCrypt.Net.BCrypt.Verify(enteredPassword, userPassword);
+        }
 
     }
 }

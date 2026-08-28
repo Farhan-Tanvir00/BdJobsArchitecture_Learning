@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Restaurant.Authentication.DTO.Commands;
+using Restaurant.Management.Shared.Common;
+using Restaurant.Management.Shared.Interfaces.GenericCommandQueryHandler;
 
 namespace Restaurant.Authentication.API.Controllers
 {
@@ -6,25 +9,25 @@ namespace Restaurant.Authentication.API.Controllers
     [Route("api/[controller]")]
     public class AccountsController: ControllerBase
     {
+        private readonly IServiceProvider _serviceProvider;
+        public AccountsController(IServiceProvider serviceProvider)
+        {
+            _serviceProvider = serviceProvider;
+        }
 
-        //public AccountsController()
-        //{
-          
-        //}
+        [HttpPost("register")]
+        public async Task<ActionResult<ApiResponse<object?>>> Register([FromBody] UserRegisterCommand command)
+        {
+            var result = await _serviceProvider.GetRequiredService<ICommandHandler<UserRegisterCommand>>().HandleAsync(command);
+            return Ok(result);
+        }
 
-        //[HttpPost("register")]
-        //public async Task<ActionResult<AuthResponseDTO?>> Register([FromBody] RegisterDTO registerDTO)
-        //{
-        //    var result = await _authService.RegisterAsync(registerDTO);
-        //    return Ok(result);
-        //}
-
-        //[HttpPost("login")]
-        //public async Task<ActionResult<AuthResponseDTO?>> Login([FromBody] LoginDTO loginDTO)
-        //{
-        //    var result = await _authService.LoginAsync(loginDTO);
-        //    return Ok(result);
-        //}
+        [HttpPost("login")]
+        public async Task<ActionResult<ApiResponse<object?>>> Login([FromBody] UserLoginCommand command)
+        {
+            var result = await _serviceProvider.GetRequiredService<ICommandHandler<UserLoginCommand>>().HandleAsync(command);
+            return Ok(result);
+        }
 
         //[HttpPost("asignRole")]
         ////[Authorize(Roles = "Admin")]

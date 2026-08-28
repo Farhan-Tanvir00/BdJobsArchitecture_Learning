@@ -23,11 +23,15 @@
             //        ValidatioErrors = dtoEx.ValidationErrors
             //    });
             //}
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 context.Response.StatusCode = 500;
-                await context.Response.WriteAsJsonAsync("Something Went Wrong");
+                await context.Response.WriteAsJsonAsync(new
+                {
+                    Message = "Something went wrong.",
+                    Error = ex.Message
+                });
             }
         }
     }

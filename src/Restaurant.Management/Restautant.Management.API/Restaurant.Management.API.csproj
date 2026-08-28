@@ -12,10 +12,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="10.2.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Restaurant.Management.Shared\Restaurant.Shared.csproj" />
     <ProjectReference Include="..\Restaurant.Management.DTO\Restaurant.Management.DTO.csproj" />
     <ProjectReference Include="..\Restaurant.Management.Handler\Restaurant.Management.Handler.csproj" />
   </ItemGroup>

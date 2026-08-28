@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Restaurant.Authentication.AggregateRoot.Extension
 {
@@ -6,7 +7,12 @@ namespace Restaurant.Authentication.AggregateRoot.Extension
     {
         public static void AddRestaurantAuthenticationAggregateRoot(this IServiceCollection services)
         {
-            // Register your aggregate root services here
+            var ApplicationAssembly = typeof(ServiceCollectionExtensions).Assembly;
+
+            services.AddScoped<UserAggregateRoot>();
+            services.AddScoped<RoleAggregateRoot>();
+
+            services.AddValidatorsFromAssembly(ApplicationAssembly);
         }
     }
 }

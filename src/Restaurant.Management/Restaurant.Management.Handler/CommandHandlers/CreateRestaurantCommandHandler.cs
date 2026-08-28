@@ -4,6 +4,7 @@ using Restaurant.Management.DTO.Commands;
 using Restaurant.Management.Repository.Interfaces;
 using Restaurant.Management.Shared.Common;
 using Restaurant.Management.Shared.Interfaces.GenericCommandQueryHandler;
+using Restaurant.Shared.Exceptions;
 using System.ComponentModel.DataAnnotations;
 
 
@@ -13,14 +14,23 @@ namespace Restaurant.Management.Handler.CommandHandlers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly RestaurantAggregateRoot _restaurantAggrigate;
+        private readonly IValidator<CreateRestaurantCommand> _createRestaurantValidator;
 
-        public CreateRestaurantCommandHandler(RestaurantAggregateRoot restaurantAggrigate, IUnitOfWork unitOfWork)
+        public CreateRestaurantCommandHandler(RestaurantAggregateRoot restaurantAggrigate, IUnitOfWork unitOfWork,
+            IValidator<CreateRestaurantCommand> createRestaurantValidator)
         {
             _unitOfWork = unitOfWork;
             _restaurantAggrigate = restaurantAggrigate;
+            _createRestaurantValidator = createRestaurantValidator;
         }
         public async Task<ApiResponse<object?>> HandleAsync(CreateRestaurantCommand command)
         {
+            var validationResult = await _createRestaurantValidator.ValidateAsync(command);
+            if (!validationResult.IsValid)
+            {
+                throw new DtoValidationException(validationResult.ToDictionary());
+            }
+
             var restaurant = _restaurantAggrigate.CreateRestaurant(command);
 
             _unitOfWork.RestaurantRepository.Add(restaurant);

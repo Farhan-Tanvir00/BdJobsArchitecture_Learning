@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Restaurant.Management.Shared\Restaurant.Shared.csproj" />
     <ProjectReference Include="..\Restaurant.Authentication.DTO\Restaurant.Authentication.DTO.csproj" />
     <ProjectReference Include="..\Restaurant.Authentication.Handler\Restaurant.Authentication.Handler.csproj" />
   </ItemGroup>

@@ -1,4 +1,5 @@
-﻿using Restaurant.Authentication.DTO.Entity;
+﻿using Microsoft.EntityFrameworkCore;
+using Restaurant.Authentication.DTO.Entity;
 using Restaurant.Authentication.Repository.Interfaces;
 using Restaurant.Authentication.Repository.Persistance;
 
@@ -14,32 +15,33 @@ namespace Restaurant.Authentication.Repository.Implementations
         }
         public void Add(T entity)
         {
-            throw new NotImplementedException();
+            _context.Set<T>().Add(entity);
         }
 
-        public Task<bool> ExistsAsync(int id)
+        public async Task<bool> ExistsAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Set<T>().AnyAsync(e => e.Id == id);
         }
 
         public IQueryable<T> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Set<T>().AsQueryable();
         }
 
-        public Task<T?> GetByIdAsync(int id)
+        public async Task<T?> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Set<T>().FindAsync(id);
         }
 
         public void Remove(T entity)
         {
-            throw new NotImplementedException();
+            _context.Set<T>().Remove(entity);
         }
 
         public void Update(T entity)
         {
-            throw new NotImplementedException();
+            _context.Set<T>().Attach(entity);
+            _context.Entry(entity).State = EntityState.Modified;
         }
 
         public async Task<bool> SaveChangesAsync()

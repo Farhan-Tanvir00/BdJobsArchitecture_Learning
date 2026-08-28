@@ -1,8 +1,10 @@
-﻿using Restaurant.Management.AggregateRoot;
+﻿using FluentValidation;
+using Restaurant.Management.AggregateRoot;
 using Restaurant.Management.DTO.Commands;
 using Restaurant.Management.Repository.Interfaces;
 using Restaurant.Management.Shared.Common;
 using Restaurant.Management.Shared.Interfaces.GenericCommandQueryHandler;
+using Restaurant.Shared.Exceptions;
 
 
 namespace Restaurant.Management.Handler.CommandHandlers
@@ -11,14 +13,24 @@ namespace Restaurant.Management.Handler.CommandHandlers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly RestaurantAggregateRoot _restaurantAggrigator;
-        public ActiveDeliveryRestaurantCommandHandler(RestaurantAggregateRoot restaurantAggrigator, IUnitOfWork unitOfWork)
+        private readonly IValidator<ActiveDeliveryRestaurantCommand> _activeRestaurantCommandValidator;
+        public ActiveDeliveryRestaurantCommandHandler(RestaurantAggregateRoot restaurantAggrigator, IUnitOfWork unitOfWork,
+            IValidator<ActiveDeliveryRestaurantCommand> activeRestaurantCommandValidator)
         {
             _unitOfWork = unitOfWork;
             _restaurantAggrigator = restaurantAggrigator;
+            _activeRestaurantCommandValidator = activeRestaurantCommandValidator;
         }
 
         public async Task<ApiResponse<object?>> HandleAsync(ActiveDeliveryRestaurantCommand command)
         {
+
+            var validationResult = await _activeRestaurantCommandValidator.ValidateAsync(command);
+            if (!validationResult.IsValid)
+            {
+                throw new DtoValidationException(validationResult.ToDictionary());
+            }
+
             var rstaurant = await _unitOfWork.RestaurantRepository.GetByIdAsync(command.RestaurantId);
             if (rstaurant == null)
             {
