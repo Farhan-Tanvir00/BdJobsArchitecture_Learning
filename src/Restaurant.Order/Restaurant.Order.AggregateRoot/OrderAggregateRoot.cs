@@ -1,6 +1,7 @@
 ﻿using Restaurant.Order.AggregateRoot.Entity;
 using Restaurant.Order.AggregateRoot.Mappings;
 using Restaurant.Order.DTO.Commands;
+using Restaurant.Order.DTO.DTO;
 
 namespace Restaurant.Order.AggregateRoot
 {
@@ -16,6 +17,12 @@ namespace Restaurant.Order.AggregateRoot
         public OrderAggregateRoot CreateOrder(CreateOrderCommand command)
         {
             return command.ToEntity();
+        }
+
+        public OrderDto GetOrderDto(OrderAggregateRoot orderAggregateRoot)
+        {
+            var dto = OrderMapping.FromEntity(orderAggregateRoot);
+            return dto!;
         }
     }
 }

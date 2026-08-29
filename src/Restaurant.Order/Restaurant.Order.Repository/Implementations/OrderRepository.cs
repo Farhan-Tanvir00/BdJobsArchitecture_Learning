@@ -1,4 +1,7 @@
-﻿using Restaurant.Order.AggregateRoot;
+﻿using Microsoft.EntityFrameworkCore;
+using Restaurant.Order.AggregateRoot;
+using Restaurant.Order.AggregateRoot.Entity;
+using Restaurant.Order.DTO.DTO;
 using Restaurant.Order.Repository.Persistance;
 using System;
 using System.Collections.Generic;
@@ -20,6 +23,10 @@ namespace Restaurant.Order.Repository.Implementations
             return await _context.SaveChangesAsync() > 0;
         }
 
-        public async Task GetOrderByIdAsync()
+        public async Task<OrderAggregateRoot?> GetOrderByIdAsync(int id)
+        {
+            var result =  await _context.Orders.Include(x => x.OrderLineItems).FirstOrDefaultAsync(x => x.Id == id);
+            return result;
+        }
     }
 }
