@@ -25,6 +25,7 @@ namespace Restaurant.Shared.Swagger
                             new List<string>()
                     });
             });
+
         }
     }
 }

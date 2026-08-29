@@ -1,7 +1,7 @@
 using Restaurant.Management.Handler.Extensions;
 using Restaurant.Shared.Security;
-using Restautant.Management.API.Middlewares;
 using Restaurant.Shared.Swagger;
+using Restautant.Shared.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 

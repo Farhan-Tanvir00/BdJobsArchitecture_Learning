@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Restaurant.Management.Shared\Restaurant.Shared.csproj" />
+    <ProjectReference Include="..\Restaurant.Order.AggregateRoot\Restaurant.Order.AggregateRoot.csproj" />
+    <ProjectReference Include="..\Restaurant.Order.DTO\Restaurant.Order.DTO.csproj" />
+    <ProjectReference Include="..\Restaurant.Order.Repository\Restaurant.Order.Repository.csproj" />
+  </ItemGroup>
+
+</Project>

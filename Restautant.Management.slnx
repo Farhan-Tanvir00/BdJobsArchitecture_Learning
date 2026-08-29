@@ -16,4 +16,18 @@
     <Project Path="src/Restaurant.Management/Restaurant.Management.Repository/Restaurant.Management.Repository.csproj" />
     <Project Path="src/Restaurant.Management/Restautant.Management.API/Restaurant.Management.API.csproj" />
   </Folder>
+  <Folder Name="/src/Restaurant.Order/">
+    <Project Path="src/Restaurant.Order/Restaurant.Order.AggregateRoot/Restaurant.Order.AggregateRoot.csproj" Id="66a2d612-b458-4aa8-b337-bdabf0e69900" />
+    <Project Path="src/Restaurant.Order/Restaurant.Order.API/Restaurant.Order.API.csproj" Id="562cdc96-e0e2-43a7-b469-209818d824c5" />
+    <Project Path="src/Restaurant.Order/Restaurant.Order.DTO/Restaurant.Order.DTO.csproj" Id="826916dd-6b9b-4bf9-8d51-a14aa30c8674" />
+    <Project Path="src/Restaurant.Order/Restaurant.Order.Handler/Restaurant.Order.Handler.csproj" Id="58de8747-0948-49bd-9522-a6caf01a7cd9" />
+    <Project Path="src/Restaurant.Order/Restaurant.Order.Repository/Restaurant.Order.Repository.csproj" Id="77d06471-1582-44c7-909f-b0e863ae412f" />
+  </Folder>
+  <Folder Name="/src/Restaurant.Receipt/">
+    <Project Path="src/Restaurant.Receipt/Restaurant.Receipt.AggregateRoot/Restaurant.Receipt.AggregateRoot.csproj" Id="0228b07d-4b71-4a11-9fe9-3a8c0c28bc28" />
+    <Project Path="src/Restaurant.Receipt/Restaurant.Receipt.API/Restaurant.Receipt.API.csproj" Id="26c92ce2-72ea-4acb-b682-5a9a895ba931" />
+    <Project Path="src/Restaurant.Receipt/Restaurant.Receipt.DTO/Restaurant.Receipt.DTO.csproj" Id="35756376-f5c5-4680-a290-28230b476eef" />
+    <Project Path="src/Restaurant.Receipt/Restaurant.Receipt.Handler/Restaurant.Receipt.Handler.csproj" Id="b972ffe3-7389-4d65-97ac-9a4319db0970" />
+    <Project Path="src/Restaurant.Receipt/Restaurant.Receipt.Repository/Restaurant.Receipt.Repository.csproj" Id="00b5b966-6759-430c-b113-18cd39e71372" />
+  </Folder>
 </Solution>

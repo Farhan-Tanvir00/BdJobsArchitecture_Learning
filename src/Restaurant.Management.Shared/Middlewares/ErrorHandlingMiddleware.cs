@@ -1,4 +1,7 @@
-﻿namespace Restautant.Management.API.Middlewares
+﻿using Microsoft.AspNetCore.Http;
+using Restaurant.Shared.Exceptions;
+
+namespace Restautant.Shared.Middlewares
 {
     public class ErrorHandlingMiddleware : IMiddleware
     {
@@ -14,15 +17,15 @@
             //    await context.Response.WriteAsJsonAsync(ex.Message);
 
             //}
-            //catch (DtoValidationException dtoEx)
-            //{
-            //    context.Response.StatusCode = 400;
-            //    await context.Response.WriteAsJsonAsync(new
-            //    {
-            //        Error = dtoEx.Message,
-            //        ValidatioErrors = dtoEx.ValidationErrors
-            //    });
-            //}
+            catch (DtoValidationException dtoEx)
+            {
+                context.Response.StatusCode = 400;
+                await context.Response.WriteAsJsonAsync(new
+                {
+                    Error = dtoEx.Message,
+                    ValidatioErrors = dtoEx.ValidationErrors
+                });
+            }
             catch (Exception ex)
             {
 
