@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="DTO\" />
+    <Folder Include="Query\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Restaurant.Management.Shared\Restaurant.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

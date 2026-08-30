@@ -10,4 +10,10 @@
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.11" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Restaurant.Management.Shared\Restaurant.Shared.csproj" />
+    <ProjectReference Include="..\Restaurant.Orchestrator.DTO\Restaurant.Orchestrator.DTO.csproj" />
+    <ProjectReference Include="..\Restaurant.Orchestrator.Handler\Restaurant.Orchestrator.Handler.csproj" />
+  </ItemGroup>
+
 </Project>
