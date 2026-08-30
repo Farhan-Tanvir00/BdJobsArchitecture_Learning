@@ -1,17 +1,28 @@
+using Restaurant.Receipt.Handler.Extensions;
+using Restaurant.Shared.Swagger;
+using Restautant.Shared.Middlewares;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+
+//swagger
+builder.Services.AddSwaggerExtension();
 builder.Services.AddOpenApi();
 
+
+builder.Services.AddTransient<ErrorHandlingMiddleware>();
+
+builder.Services.AddRestaurrantReceiptHandler(builder.Configuration);
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+app.UseMiddleware<ErrorHandlingMiddleware>();
+
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();

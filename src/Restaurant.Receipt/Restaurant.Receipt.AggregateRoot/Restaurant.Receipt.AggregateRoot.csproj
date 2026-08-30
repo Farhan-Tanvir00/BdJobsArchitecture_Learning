@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Restaurant.Receipt.DTO\Restaurant.Receipt.DTO.csproj" />
+  </ItemGroup>
+
 </Project>

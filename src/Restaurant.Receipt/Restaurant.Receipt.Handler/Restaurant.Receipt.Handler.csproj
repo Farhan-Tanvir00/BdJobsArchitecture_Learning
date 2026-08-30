@@ -6,4 +6,15 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="QueryHandlers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Restaurant.Management.Shared\Restaurant.Shared.csproj" />
+    <ProjectReference Include="..\Restaurant.Receipt.AggregateRoot\Restaurant.Receipt.AggregateRoot.csproj" />
+    <ProjectReference Include="..\Restaurant.Receipt.DTO\Restaurant.Receipt.DTO.csproj" />
+    <ProjectReference Include="..\Restaurant.Receipt.Repository\Restaurant.Receipt.Repository.csproj" />
+  </ItemGroup>
+
 </Project>
