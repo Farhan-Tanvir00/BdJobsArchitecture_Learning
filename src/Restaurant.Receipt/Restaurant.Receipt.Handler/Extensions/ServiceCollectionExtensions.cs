@@ -6,7 +6,7 @@ using Restaurant.Receipt.DTO.Command;
 using Restaurant.Receipt.Handler.CommandHandlers;
 using Restaurant.Receipt.Repository.Extensions;
 using Restaurant.Shared.Interfaces.ServiceBus;
-using Restaurant.Shared.ServiceBus;
+
 
 
 namespace Restaurant.Receipt.Handler.Extensions
@@ -20,9 +20,6 @@ namespace Restaurant.Receipt.Handler.Extensions
             service.AddAddRestaurrantReceiptAggregateRoot();
             service.AddRestaurrantReceiptRepository(configuration);
 
-
-            //For Making The Command and Query Generation Generic
-            service.AddScoped<IRequestDispatcher, RequestDispatcher>();
         }
     }
 }

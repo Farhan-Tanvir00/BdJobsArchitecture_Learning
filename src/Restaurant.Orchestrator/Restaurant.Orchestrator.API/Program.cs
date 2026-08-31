@@ -19,7 +19,7 @@ builder.Services.AddTransient<ErrorHandlingMiddleware>();
 
 //Service Bus
 builder.Services.AddServiceBus();
-builder.Services.AddOrchestratorHandler();
+builder.Services.AddOrchestratorHandler(builder.Configuration);
 
 var app = builder.Build();
 
