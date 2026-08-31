@@ -7,12 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DTO\" />
-    <Folder Include="Query\" />
+    <ProjectReference Include="..\..\Restaurant.Management.Shared\Restaurant.Shared.csproj" />
+    <ProjectReference Include="..\..\Restaurant.Order\Restaurant.Order.DTO\Restaurant.Order.DTO.csproj" />
+    <ProjectReference Include="..\..\Restaurant.Receipt\Restaurant.Receipt.DTO\Restaurant.Receipt.DTO.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Restaurant.Management.Shared\Restaurant.Shared.csproj" />
+    <Folder Include="DTO\" />
+    <Folder Include="Query\" />
   </ItemGroup>
 
 </Project>

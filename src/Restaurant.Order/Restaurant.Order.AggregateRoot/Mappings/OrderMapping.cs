@@ -32,7 +32,7 @@ namespace Restaurant.Order.AggregateRoot.Mappings
             }
 
             return new OrderDto
-            {
+            {   OrderId = order.Id,
                 CustomerId = order.CustomerId,
                 RestaurantId = order.RestaurantId,
                 ShippingAddress = order.ShippingAddress,

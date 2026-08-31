@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Restaurant.Management.Shared\Restaurant.Shared.csproj" />
+    <ProjectReference Include="..\Restaurant.Order\Restaurant.Order.Handler\Restaurant.Order.Handler.csproj" />
+    <ProjectReference Include="..\Restaurant.Receipt\Restaurant.Receipt.Handler\Restaurant.Receipt.Handler.csproj" />
+  </ItemGroup>
+
 </Project>

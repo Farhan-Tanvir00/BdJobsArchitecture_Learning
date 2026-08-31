@@ -17,8 +17,7 @@
     <Project Path="src/Restaurant.Management/Restaurant.Management.Repository/Restaurant.Management.Repository.csproj" />
     <Project Path="src/Restaurant.Management/Restautant.Management.API/Restaurant.Management.API.csproj" />
   </Folder>
-  <Folder Name="/src/Restaurant.Orchestrator/" Id="0002518f-0dc4-7274-b005-5274843799c1">
-    <Project Path="src/Restaurant.Orchestrator/Restaurant.Orchestrator.AggregateRoot/Restaurant.Orchestrator.AggregateRoot.csproj" Id="e603873e-c4be-4350-8308-3e7192b9d70a" />
+  <Folder Name="/src/Restaurant.Orchestrator/">
     <Project Path="src/Restaurant.Orchestrator/Restaurant.Orchestrator.API/Restaurant.Orchestrator.API.csproj" Id="bf787e0c-0f17-49f7-8adc-f76534729c6c" />
     <Project Path="src/Restaurant.Orchestrator/Restaurant.Orchestrator.DTO/Restaurant.Orchestrator.DTO.csproj" Id="9cb6150c-7ec5-4d26-9ecd-283620850214" />
     <Project Path="src/Restaurant.Orchestrator/Restaurant.Orchestrator.Handler/Restaurant.Orchestrator.Handler.csproj" Id="5103adf8-75ec-46b5-8f40-7574a282a0a2" />

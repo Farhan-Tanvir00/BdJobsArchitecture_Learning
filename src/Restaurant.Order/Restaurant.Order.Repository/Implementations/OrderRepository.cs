@@ -17,10 +17,11 @@ namespace Restaurant.Order.Repository.Implementations
             _context = context;
         }
 
-        public async Task<bool> AddNewOrder(OrderAggregateRoot aggregateRoot)
+        public async Task<(bool success, int id)> AddNewOrder(OrderAggregateRoot aggregateRoot)
         {
             _context.Orders.Add(aggregateRoot);
-            return await _context.SaveChangesAsync() > 0;
+            var result =  await _context.SaveChangesAsync() > 0;
+            return (result, aggregateRoot.Id);
         }
 
         public async Task<OrderAggregateRoot?> GetOrderByIdAsync(int id)

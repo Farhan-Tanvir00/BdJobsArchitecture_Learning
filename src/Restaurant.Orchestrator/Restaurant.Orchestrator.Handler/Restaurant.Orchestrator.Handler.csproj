@@ -6,4 +6,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="QueryHandlers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Restaurant.Management.Shared\Restaurant.Shared.csproj" />
+    <ProjectReference Include="..\..\Restaurant.ServiceBus\Restaurant.ServiceBus.csproj" />
+    <ProjectReference Include="..\Restaurant.Orchestrator.DTO\Restaurant.Orchestrator.DTO.csproj" />
+  </ItemGroup>
+
 </Project>

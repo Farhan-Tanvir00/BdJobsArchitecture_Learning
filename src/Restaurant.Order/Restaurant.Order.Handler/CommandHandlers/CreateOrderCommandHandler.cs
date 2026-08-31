@@ -21,14 +21,14 @@ namespace Restaurant.Order.Handler.CommandHandlers
         public async Task<ApiResponse<object?>> HandleAsync(CreateOrderCommand command)
         {
             var order = _orderAggregateRoot.CreateOrder(command);
-            var success = await _orderRepository.AddNewOrder(order);
+            var (success, OrdeId) = await _orderRepository.AddNewOrder(order);
 
             if (!success)
             {
                 return ApiResponse<object?>.FailedResponse("Faild saving Order", 400);
             }
 
-            return ApiResponse<object?>.SuccessResponse("Order Saved Successfully", 201);
+            return ApiResponse<object?>.SuccessResponse("Order Saved Successfully", 201, order.Id);
         }
     }
 }

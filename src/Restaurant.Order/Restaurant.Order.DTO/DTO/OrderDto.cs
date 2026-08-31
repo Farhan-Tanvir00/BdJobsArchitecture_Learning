@@ -7,6 +7,7 @@ namespace Restaurant.Order.DTO.DTO
 {
     public class OrderDto
     {
+        public int OrderId { get; set; }
         public int CustomerId { get; set; }
         public int RestaurantId { get; set; }
         public string? ShippingAddress { get; set; }
