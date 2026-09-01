@@ -1,4 +1,5 @@
 using Restaurant.Order.Handler.Extensions;
+using Restaurant.Shared.Security;
 using Restaurant.Shared.Swagger;
 using Restautant.Shared.Middlewares;
 
@@ -11,7 +12,7 @@ builder.Services.AddSwaggerExtension();
 builder.Services.AddOpenApi();
 
 builder.Services.AddTransient<ErrorHandlingMiddleware>();
-
+builder.Services.AddSharedJwtAuthentication(builder.Configuration);
 
 builder.Services.AddRestaurantOrderHandler(builder.Configuration);
 
@@ -27,6 +28,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

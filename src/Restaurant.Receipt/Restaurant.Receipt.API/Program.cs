@@ -1,4 +1,5 @@
 using Restaurant.Receipt.Handler.Extensions;
+using Restaurant.Shared.Security;
 using Restaurant.Shared.Swagger;
 using Restautant.Shared.Middlewares;
 
@@ -13,7 +14,7 @@ builder.Services.AddOpenApi();
 
 
 builder.Services.AddTransient<ErrorHandlingMiddleware>();
-
+builder.Services.AddSharedJwtAuthentication(builder.Configuration);
 builder.Services.AddRestaurrantReceiptHandler(builder.Configuration);
 var app = builder.Build();
 
@@ -27,6 +28,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Restaurant.Management.Shared.Common;
 using Restaurant.Management.Shared.Interfaces.GenericCommandQueryHandler;
 using Restaurant.Order.DTO.Commands;
@@ -20,7 +21,7 @@ namespace Restaurant.Order.API.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<ActionResult<ApiResponse<object>>> GetRestaurantById([FromRoute] int id)
+        public async Task<ActionResult<ApiResponse<object>>> GetRestaurantOrderById([FromRoute] int id)
         {
             var query = new GetOrderByIdQuery { Id = id };
             var result = await _serviceProvider.GetRequiredService<IQueryHandler<GetOrderByIdQuery, ApiResponse<OrderDto>>>().HandleAsync(query);
@@ -28,7 +29,8 @@ namespace Restaurant.Order.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ApiResponse<object?>>> CreateRestaurant([FromBody] CreateOrderCommand command)
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult<ApiResponse<object?>>> CreateRestaurantOrder([FromBody] CreateOrderCommand command)
         {
             var result = await _serviceProvider.GetRequiredService<ICommandHandler<CreateOrderCommand>>().HandleAsync(command);
             return Ok(result);

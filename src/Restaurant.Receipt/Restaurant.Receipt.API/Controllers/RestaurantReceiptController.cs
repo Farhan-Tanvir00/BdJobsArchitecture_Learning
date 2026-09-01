@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Restaurant.Management.Shared.Common;
 using Restaurant.Management.Shared.Interfaces.GenericCommandQueryHandler;
 using Restaurant.Receipt.DTO.Command;
@@ -25,7 +26,8 @@ namespace Restaurant.Receipt.API.Controllers
         //}
 
         [HttpPost]
-        public async Task<ActionResult<ApiResponse<object?>>> CreateRestaurant([FromBody] CreateReceiptCommand command)
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult<ApiResponse<object?>>> CreateRestaurantReceipt([FromBody] CreateReceiptCommand command)
         {
             var result = await _serviceProvider.GetRequiredService<ICommandHandler<CreateReceiptCommand>>().HandleAsync(command);
             return Ok(result);

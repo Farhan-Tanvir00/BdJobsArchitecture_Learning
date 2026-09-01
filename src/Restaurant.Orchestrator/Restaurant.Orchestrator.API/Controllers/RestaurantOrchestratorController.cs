@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Restaurant.Management.Shared.Common;
 using Restaurant.Management.Shared.Interfaces.GenericCommandQueryHandler;
 using Restaurant.Orchestrator.DTO.Command;
@@ -16,6 +17,8 @@ namespace Restaurant.Orchestrator.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles ="Admin")]
+        [Route("CreateOrderWiseReceipt")]
         public async Task<ActionResult<ApiResponse<object?>>> CreateOrderWiseReceipt([FromBody] CreateOrderWithReceiptCommand command)
         {
             var result = await _serviceProvider.GetRequiredService<ICommandHandler<CreateOrderWithReceiptCommand>>().HandleAsync(command);

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Restaurant.Order.AggregateRoot.Extensions
 {
@@ -6,7 +7,11 @@ namespace Restaurant.Order.AggregateRoot.Extensions
     {
         public static void AddRestaurantOrderAggregateRoot(this IServiceCollection service)
         {
+            var ApplicationAssembly = typeof(ServiceCollectionExtensions).Assembly;
+
             service.AddScoped<OrderAggregateRoot>();
+
+            service.AddValidatorsFromAssembly(ApplicationAssembly);
         }
     }
 }
