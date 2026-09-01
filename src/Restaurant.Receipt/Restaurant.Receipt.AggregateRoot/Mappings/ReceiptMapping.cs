@@ -15,6 +15,7 @@ namespace Restaurant.Receipt.AggregateRoot.Mappings
                 CustomerId = command.RestaurantCustomerId,
                 RestaurantId = command.TargetRestaurantId,
                 ShippingAddress = command.CustomerShippingAddress,
+                TotalCost = command.TotalCost,
                 OrderLineItems = new List<ReceiptLineItem>()
             };
 

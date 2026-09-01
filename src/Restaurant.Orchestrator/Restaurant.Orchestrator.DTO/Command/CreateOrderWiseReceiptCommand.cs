@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace Restaurant.Orchestrator.DTO.Command
 {
-    public class CreateOrderWiseReceiptCommand : ICommand
+    public class CreateOrderWithReceiptCommand : ICommand
     {
         public int RestaurantCustomerId { get; set; }
 

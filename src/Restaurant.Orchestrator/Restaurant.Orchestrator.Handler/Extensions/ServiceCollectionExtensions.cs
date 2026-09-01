@@ -12,12 +12,9 @@ namespace Restaurant.Orchestrator.Handler.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        public static void AddOrchestratorHandler(this IServiceCollection services, IConfiguration configuration)
+        public static void AddOrchestratorHandler(this IServiceCollection services)
         {
-            services.AddScoped<ICommandHandler<CreateOrderWiseReceiptCommand>, CreateOrderWithReceiptCommandHandler>();
-
-            services.AddRestaurantOrderHandler(configuration);
-            services.AddRestaurrantReceiptHandler(configuration);
+            services.AddScoped<ICommandHandler<CreateOrderWithReceiptCommand>, CreateOrderWithReceiptCommandHandler>();
         }
     }
 }

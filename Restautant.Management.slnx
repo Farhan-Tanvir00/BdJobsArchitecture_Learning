@@ -1,7 +1,7 @@
 <Solution>
   <Folder Name="/src/">
     <Project Path="src/Restaurant.Management.Shared/Restaurant.Shared.csproj" />
-    <Project Path="src/Restaurant.ServiceBus/Restaurant.ServiceBus.csproj" Id="daa5a444-d352-4006-811e-0634aaca0d63" />
+    <Project Path="src/Restaurant.ServiceBus/GenericServiceBus.csproj" Id="daa5a444-d352-4006-811e-0634aaca0d63" />
   </Folder>
   <Folder Name="/src/Restaurant.Authentication/">
     <Project Path="src/Restaurant.Authentication/Restaurant.Authentication.AggregateRoot/Restaurant.Authentication.AggregateRoot.csproj" Id="f5f27eb6-49a4-402d-a152-16207d34ee9e" />

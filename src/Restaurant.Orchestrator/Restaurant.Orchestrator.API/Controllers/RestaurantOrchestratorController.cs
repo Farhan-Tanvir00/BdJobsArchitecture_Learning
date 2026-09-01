@@ -16,9 +16,9 @@ namespace Restaurant.Orchestrator.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ApiResponse<object?>>> CreateOrderWiseReceipt([FromBody] CreateOrderWiseReceiptCommand command)
+        public async Task<ActionResult<ApiResponse<object?>>> CreateOrderWiseReceipt([FromBody] CreateOrderWithReceiptCommand command)
         {
-            var result = await _serviceProvider.GetRequiredService<ICommandHandler<CreateOrderWiseReceiptCommand>>().HandleAsync(command);
+            var result = await _serviceProvider.GetRequiredService<ICommandHandler<CreateOrderWithReceiptCommand>>().HandleAsync(command);
             return Ok(result);
         }
     }

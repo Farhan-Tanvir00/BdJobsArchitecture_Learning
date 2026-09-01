@@ -16,6 +16,7 @@ namespace Restaurant.Receipt.AggregateRoot.Mappings
                 DishId = command.RestaurantDishId,
                 Quantity = command.OrderedQuantity,
                 UnitPrice = command.DishUnitPrice,
+                LineTotal = command.LineTotal,
             };
 
         }

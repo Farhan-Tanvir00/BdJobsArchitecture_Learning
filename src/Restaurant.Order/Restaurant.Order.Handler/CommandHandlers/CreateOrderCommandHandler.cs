@@ -1,4 +1,5 @@
-﻿using Restaurant.Management.Shared.Common;
+﻿using FluentValidation;
+using Restaurant.Management.Shared.Common;
 using Restaurant.Management.Shared.Interfaces.GenericCommandQueryHandler;
 using Restaurant.Order.AggregateRoot;
 using Restaurant.Order.DTO.Commands;
@@ -13,6 +14,7 @@ namespace Restaurant.Order.Handler.CommandHandlers
     {
         private readonly OrderAggregateRoot _orderAggregateRoot;
         private readonly OrderRepository _orderRepository;
+        //private readonly IValidator<CreateOrderCommand> _validator;
         public CreateOrderCommandHandler(OrderAggregateRoot orderAggregateRoot, OrderRepository orderRepository)
         {
             _orderAggregateRoot = orderAggregateRoot;

@@ -9,7 +9,7 @@ namespace Restaurant.Orchestrator.DTO.Service
 {
     public static class OrchestratorService
     {
-        public static CreateOrderCommand CreateOrderCommand(CreateOrderWiseReceiptCommand command)
+        public static CreateOrderCommand CreateOrderCommand(CreateOrderWithReceiptCommand command)
         {
             return new CreateOrderCommand
             {

@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Restaurant.Management.Shared\Restaurant.Shared.csproj" />
-    <ProjectReference Include="..\..\Restaurant.ServiceBus\Restaurant.ServiceBus.csproj" />
+    <ProjectReference Include="..\..\Restaurant.ServiceBus\GenericServiceBus.csproj" />
     <ProjectReference Include="..\Restaurant.Orchestrator.DTO\Restaurant.Orchestrator.DTO.csproj" />
   </ItemGroup>
 

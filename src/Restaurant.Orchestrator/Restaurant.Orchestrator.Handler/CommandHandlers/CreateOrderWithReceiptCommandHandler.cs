@@ -8,17 +8,18 @@ using Restaurant.ServiceBus.Implementation;
 
 namespace Restaurant.Orchestrator.Handler.CommandHandlers
 {
-    public class CreateOrderWithReceiptCommandHandler : ICommandHandler<CreateOrderWiseReceiptCommand>
+    public class CreateOrderWithReceiptCommandHandler : ICommandHandler<CreateOrderWithReceiptCommand>
     {
         private readonly GenericServiceBus _serviceBus;
         public CreateOrderWithReceiptCommandHandler(GenericServiceBus serviceBus)
         {
             _serviceBus = serviceBus;
         }
-        public async Task<ApiResponse<object?>> HandleAsync(CreateOrderWiseReceiptCommand command)
+        public async Task<ApiResponse<object?>> HandleAsync(CreateOrderWithReceiptCommand command)
         {
             var orderCommand = OrchestratorService.CreateOrderCommand(command);
             var createOrderResponse = await _serviceBus.SendCommandAsync(orderCommand);
+
             if (!createOrderResponse.Success)
             {
                 return ApiResponse<object?>.FailedResponse(createOrderResponse.Message!, createOrderResponse.StatusCode);
