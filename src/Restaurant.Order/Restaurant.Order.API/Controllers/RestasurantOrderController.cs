@@ -29,7 +29,7 @@ namespace Restaurant.Order.API.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<ActionResult<ApiResponse<object?>>> CreateRestaurantOrder([FromBody] CreateOrderCommand command)
         {
             var result = await _serviceProvider.GetRequiredService<ICommandHandler<CreateOrderCommand>>().HandleAsync(command);

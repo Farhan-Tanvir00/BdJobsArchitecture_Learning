@@ -40,5 +40,16 @@
                 Data = default
             };
         }
+
+        public static ApiResponse<T> FailedResponse(T data, string message = "Validation failed", int statusCode = 400)
+        {
+            return new ApiResponse<T>
+            {
+                Success = false,
+                StatusCode = statusCode,
+                Message = message,
+                Data = data
+            };
+        }
     }
 }

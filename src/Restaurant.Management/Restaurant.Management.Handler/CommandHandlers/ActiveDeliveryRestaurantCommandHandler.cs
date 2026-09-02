@@ -28,7 +28,8 @@ namespace Restaurant.Management.Handler.CommandHandlers
             var validationResult = await _activeRestaurantCommandValidator.ValidateAsync(command);
             if (!validationResult.IsValid)
             {
-                throw new DtoValidationException(validationResult.ToDictionary());
+                var validationErrors = validationResult.ToDictionary();
+                return ApiResponse<object?>.FailedResponse(validationErrors, "Validation failed", 400);
             }
 
             var rstaurant = await _unitOfWork.RestaurantRepository.GetByIdAsync(command.RestaurantId);

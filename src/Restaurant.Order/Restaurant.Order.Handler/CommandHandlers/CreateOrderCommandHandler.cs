@@ -27,7 +27,9 @@ namespace Restaurant.Order.Handler.CommandHandlers
             var validationResult = await _validator.ValidateAsync(command);
             if (!validationResult.IsValid)
             {
-                throw new DtoValidationException(validationResult.ToDictionary());
+                var validationErrors = validationResult.ToDictionary();
+                return ApiResponse<object?>.FailedResponse(validationErrors, "Validation failed", 400);
+
             }
 
             var order = _orderAggregateRoot.CreateOrder(command);

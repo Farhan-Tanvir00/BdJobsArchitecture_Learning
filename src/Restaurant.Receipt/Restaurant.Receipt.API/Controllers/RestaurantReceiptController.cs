@@ -26,7 +26,7 @@ namespace Restaurant.Receipt.API.Controllers
         //}
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<ActionResult<ApiResponse<object?>>> CreateRestaurantReceipt([FromBody] CreateReceiptCommand command)
         {
             var result = await _serviceProvider.GetRequiredService<ICommandHandler<CreateReceiptCommand>>().HandleAsync(command);

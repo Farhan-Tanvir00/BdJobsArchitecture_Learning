@@ -31,7 +31,8 @@ namespace Restaurant.Authentication.Handler.CommandHandlers
             var validationResult = await _validator.ValidateAsync(command);
             if (!validationResult.IsValid)
             {
-                throw new DtoValidationException(validationResult.ToDictionary());
+                var validationErrors = validationResult.ToDictionary();
+                return ApiResponse<object?>.FailedResponse(validationErrors, "Validation failed", 400);
             }
 
             var existingUser = await _userRepository.GetByUserNameAsync(command.AppUserName!);
