@@ -17,7 +17,7 @@ namespace Restaurant.Orchestrator.API.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles ="Admin")]
+        //[Authorize(Roles ="Admin")]
         [Route("CreateOrderWiseReceipt")]
         public async Task<ActionResult<ApiResponse<object?>>> CreateOrderWiseReceipt([FromBody] CreateOrderWithReceiptCommand command)
         {

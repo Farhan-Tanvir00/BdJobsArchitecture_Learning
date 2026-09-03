@@ -22,7 +22,7 @@ namespace Restaurant.Orchestrator.Handler.CommandHandlers
 
             if (!createOrderResponse.Success)
             {
-                return ApiResponse<object?>.FailedResponse(createOrderResponse.Message!, createOrderResponse.StatusCode);
+                return ApiResponse<object?>.FailedResponse(createOrderResponse.Data, createOrderResponse.Message!, createOrderResponse.StatusCode);
             }
 
             var orderQuery = OrchestratorService.CreateOrderQuery(createOrderResponse.CreatedWithId);
@@ -32,7 +32,7 @@ namespace Restaurant.Orchestrator.Handler.CommandHandlers
             var createReceiptResponse = await _serviceBus.SendCommandAsync(receiptCommand);
             if (!createReceiptResponse.Success)
             {
-                return ApiResponse<object?>.FailedResponse(createReceiptResponse.Message!, createOrderResponse.StatusCode);
+                return ApiResponse<object?>.FailedResponse(createOrderResponse.Data, createReceiptResponse.Message!, createOrderResponse.StatusCode);
             }
 
             return ApiResponse<object?>.SuccessResponse("Order and Receipt Created", 200);
